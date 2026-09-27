@@ -1,0 +1,1050 @@
+```html
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Para Brisa ❤️</title>
+
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Georgia, "Times New Roman", serif;
+    background:
+        radial-gradient(circle at top, #182b20 0%, #07100c 45%, #030605 100%);
+    color: white;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+.background {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 0;
+}
+
+.leaf {
+    position: absolute;
+    width: 18px;
+    height: 30px;
+    background: #234d36;
+    border-radius: 100% 0 100% 0;
+    opacity: .45;
+    animation: floatLeaf 12s linear infinite;
+}
+
+.leaf:nth-child(1) { left: 8%; animation-delay: 0s; }
+.leaf:nth-child(2) { left: 25%; animation-delay: 4s; }
+.leaf:nth-child(3) { left: 52%; animation-delay: 7s; }
+.leaf:nth-child(4) { left: 78%; animation-delay: 2s; }
+.leaf:nth-child(5) { left: 92%; animation-delay: 6s; }
+
+@keyframes floatLeaf {
+    0% {
+        transform: translateY(110vh) rotate(0deg);
+    }
+
+    100% {
+        transform: translateY(-20vh) rotate(360deg);
+    }
+}
+
+.flower {
+    position: fixed;
+    z-index: 1;
+    font-size: 55px;
+    opacity: .75;
+    pointer-events: none;
+    animation: flowerFloat 5s ease-in-out infinite;
+}
+
+.flower.left {
+    left: 15px;
+    bottom: 20px;
+}
+
+.flower.right {
+    right: 15px;
+    top: 25px;
+    animation-delay: 1.5s;
+}
+
+@keyframes flowerFloat {
+    0%,100% {
+        transform: rotate(-5deg) translateY(0);
+    }
+
+    50% {
+        transform: rotate(5deg) translateY(-12px);
+    }
+}
+
+.screen {
+    min-height: 100vh;
+    display: none;
+    position: relative;
+    z-index: 2;
+    padding: 30px 20px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.screen.active {
+    display: flex;
+}
+
+.card {
+    width: min(700px, 95vw);
+    padding: 35px 25px;
+    border-radius: 30px;
+    background: rgba(5, 15, 10, .78);
+    border: 1px solid rgba(190, 30, 55, .35);
+    box-shadow:
+        0 0 50px rgba(130, 0, 20, .18),
+        inset 0 0 30px rgba(255,255,255,.015);
+    backdrop-filter: blur(10px);
+}
+
+h1 {
+    font-size: clamp(38px, 9vw, 70px);
+    color: #ff526d;
+    margin-bottom: 20px;
+}
+
+h2 {
+    font-size: clamp(28px, 7vw, 45px);
+    color: #ff657a;
+    margin-bottom: 20px;
+}
+
+p {
+    font-size: 18px;
+    line-height: 1.8;
+    color: #eee;
+}
+
+.small {
+    font-size: 14px;
+    opacity: .65;
+    margin-top: 20px;
+}
+
+button {
+    border: none;
+    cursor: pointer;
+    color: white;
+    background: linear-gradient(135deg, #9e1730, #d93650);
+    padding: 15px 28px;
+    border-radius: 50px;
+    font-size: 17px;
+    font-weight: bold;
+    margin: 12px 5px;
+    box-shadow: 0 8px 25px rgba(160, 0, 30, .25);
+    transition: .25s;
+}
+
+button:hover {
+    transform: scale(1.06);
+    box-shadow: 0 12px 35px rgba(200, 0, 40, .35);
+}
+
+button:active {
+    transform: scale(.96);
+}
+
+.envelope {
+    width: 220px;
+    height: 150px;
+    margin: 30px auto;
+    position: relative;
+    cursor: pointer;
+    transition: .4s;
+}
+
+.envelope:hover {
+    transform: scale(1.05);
+}
+
+.envelope-body {
+    position: absolute;
+    inset: 0;
+    background: #8f1c32;
+    border-radius: 10px;
+    box-shadow: 0 15px 35px rgba(0,0,0,.35);
+}
+
+.envelope-flap {
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-left: 110px solid transparent;
+    border-right: 110px solid transparent;
+    border-top: 80px solid #c42d49;
+    top: 0;
+    left: 0;
+}
+
+.heart-seal {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -20%);
+    font-size: 45px;
+}
+
+.photo-container {
+    margin: 25px auto;
+    width: min(500px, 90vw);
+    border-radius: 25px;
+    overflow: hidden;
+    border: 2px solid rgba(255, 70, 95, .5);
+    box-shadow: 0 0 40px rgba(180, 0, 30, .25);
+}
+
+.photo-container img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.story-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+    margin: 25px 0;
+}
+
+.story-button {
+    background: #123322;
+    border: 1px solid #285b3d;
+    padding: 12px 18px;
+    font-size: 14px;
+}
+
+.story-text {
+    min-height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    color: #eee;
+    font-size: 18px;
+    line-height: 1.8;
+}
+
+.ring {
+    width: 125px;
+    height: 125px;
+    border: 13px solid #cfcfcf;
+    border-radius: 50%;
+    margin: 35px auto;
+    position: relative;
+    cursor: pointer;
+    box-shadow:
+        0 0 20px rgba(255,255,255,.2),
+        inset 0 0 10px rgba(0,0,0,.3);
+    transition: .4s;
+}
+
+.ring::after {
+    content: "💎";
+    position: absolute;
+    font-size: 45px;
+    top: -35px;
+    left: 50%;
+    transform: translateX(-50%);
+    filter: drop-shadow(0 0 10px white);
+}
+
+.ring:hover {
+    transform: rotate(10deg) scale(1.1);
+}
+
+.question {
+    font-size: clamp(30px, 7vw, 55px);
+    color: #ff6680;
+    margin: 20px 0;
+}
+
+.answers {
+    margin-top: 25px;
+}
+
+.letter {
+    text-align: left;
+    background: rgba(255,255,255,.035);
+    border-left: 3px solid #b92845;
+    padding: 25px;
+    border-radius: 10px;
+    line-height: 1.9;
+}
+
+.letter p {
+    margin-bottom: 18px;
+}
+
+.petal {
+    position: fixed;
+    top: -30px;
+    z-index: 20;
+    pointer-events: none;
+    font-size: 22px;
+    animation: fall linear forwards;
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(110vh) rotate(500deg);
+        opacity: 0;
+    }
+}
+
+.final-ring {
+    font-size: 75px;
+    animation: pulseRing 2s infinite;
+    margin: 20px;
+}
+
+@keyframes pulseRing {
+    0%,100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.12);
+    }
+}
+
+@media(max-width: 600px) {
+
+    .card {
+        padding: 30px 18px;
+    }
+
+    p {
+        font-size: 16px;
+    }
+
+    .flower {
+        font-size: 40px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="background">
+    <div class="leaf"></div>
+    <div class="leaf"></div>
+    <div class="leaf"></div>
+    <div class="leaf"></div>
+    <div class="leaf"></div>
+</div>
+
+<div class="flower left">🌹</div>
+<div class="flower right">🌿</div>
+
+
+<!-- =========================
+     INICIO
+========================= -->
+
+<section class="screen active" id="screen1">
+
+    <div class="card">
+
+        <div style="font-size:70px;">🌹</div>
+
+        <h1>Brisa</h1>
+
+        <p>
+            Tengo algo que quiero preguntarte...
+        </p>
+
+        <p style="margin-top:10px;">
+            Pero antes quiero que recorras esto conmigo.
+        </p>
+
+        <button onclick="nextScreen(2)">
+            Entrar ❤️
+        </button>
+
+        <div class="small">
+            Hecho especialmente para vos.
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     SOBRE
+========================= -->
+
+<section class="screen" id="screen2">
+
+    <div class="card">
+
+        <h2>Antes de seguir...</h2>
+
+        <p>
+            Hay cosas que uno puede decir en un mensaje,
+            pero hay otras que merecen un poquito más.
+        </p>
+
+        <div class="envelope" onclick="openEnvelope()">
+
+            <div class="envelope-body"></div>
+
+            <div class="envelope-flap"></div>
+
+            <div class="heart-seal">
+                ❤️
+            </div>
+
+        </div>
+
+        <p id="envelopeText" class="small">
+            Tocá el sobre.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     FOTO
+========================= -->
+
+<section class="screen" id="screen3">
+
+    <div class="card">
+
+        <h2>Vos y yo ❤️</h2>
+
+        <div class="photo-container">
+
+            <img src="foto.jpg" alt="Brisa y yo">
+
+        </div>
+
+        <p>
+            Quizás la distancia haga que todavía no podamos
+            tener todas las fotos que algún día vamos a querer.
+        </p>
+
+        <p style="margin-top:10px;">
+            Pero esta representa algo que sí tenemos:
+            nosotros.
+        </p>
+
+        <button onclick="nextScreen(4)">
+            Seguir 🌹
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     HISTORIA
+========================= -->
+
+<section class="screen" id="screen4">
+
+    <div class="card">
+
+        <h2>Nuestra historia</h2>
+
+        <p>
+            Tocá cada momento.
+        </p>
+
+        <div class="story-buttons">
+
+            <button class="story-button"
+                onclick="showStory(1)">
+                27/12/2024
+            </button>
+
+            <button class="story-button"
+                onclick="showStory(2)">
+                01/01/2025
+            </button>
+
+            <button class="story-button"
+                onclick="showStory(3)">
+                El reencuentro
+            </button>
+
+            <button class="story-button"
+                onclick="showStory(4)">
+                Hoy ❤️
+            </button>
+
+        </div>
+
+        <div class="story-text" id="storyText">
+            Elegí un momento...
+        </div>
+
+        <button onclick="nextScreen(5)">
+            Hay algo más...
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     DISTANCIA
+========================= -->
+
+<section class="screen" id="screen5">
+
+    <div class="card">
+
+        <div style="font-size:60px;">
+            🌎 ❤️ 🌎
+        </div>
+
+        <h2>
+            Aunque haya distancia...
+        </h2>
+
+        <p>
+            Hay kilómetros entre nosotros,
+            pero eso nunca hizo que lo que siento
+            por vos se sintiera lejos.
+        </p>
+
+        <p style="margin-top:15px;">
+            Tenemos llamadas, mensajes, noches hablando,
+            risas, momentos difíciles y un montón de cosas
+            que todavía queremos vivir.
+        </p>
+
+        <p style="margin-top:15px;">
+            Y algún día vamos a poder convertir
+            todo eso en recuerdos estando juntos.
+        </p>
+
+        <button onclick="nextScreen(6)">
+            Quiero preguntarte algo ❤️
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     NOVIA
+========================= -->
+
+<section class="screen" id="screen6">
+
+    <div class="card">
+
+        <h2>Brisa...</h2>
+
+        <div class="question">
+            ¿Querés ser mi novia?
+        </div>
+
+        <p>
+            Quiero que esto sea el comienzo de todo lo que
+            todavía nos queda por construir, incluso
+            con la distancia de por medio.
+        </p>
+
+        <div class="answers">
+
+            <button onclick="yesGirlfriend()">
+                Sí ❤️
+            </button>
+
+            <button onclick="noGirlfriend()">
+                Necesito pensarlo...
+            </button>
+
+        </div>
+
+        <p id="answerText" class="small"></p>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     FUTURO
+========================= -->
+
+<section class="screen" id="screen7">
+
+    <div class="card">
+
+        <div style="font-size:65px;">
+            💍
+        </div>
+
+        <h2>
+            Y hay algo más...
+        </h2>
+
+        <p>
+            No te estoy preguntando que pase mañana.
+        </p>
+
+        <p style="margin-top:12px;">
+            Estoy hablando de ese futuro que algún día
+            podamos construir juntos.
+        </p>
+
+        <div class="ring" onclick="ringClicked()"></div>
+
+        <p id="ringText" class="small">
+            Tocá el anillo.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     ESPOSA
+========================= -->
+
+<section class="screen" id="screen8">
+
+    <div class="card">
+
+        <div class="final-ring">
+            💍
+        </div>
+
+        <div class="question">
+            ¿Querés ser mi esposa
+            algún día?
+        </div>
+
+        <p>
+            No necesito que el futuro esté escrito.
+        </p>
+
+        <p style="margin-top:12px;">
+            Solamente quiero saber si te imaginás
+            recorriéndolo conmigo.
+        </p>
+
+        <button onclick="finalYes()">
+            Sí, quiero ❤️
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     CARTA
+========================= -->
+
+<section class="screen" id="screen9">
+
+    <div class="card">
+
+        <h2>Para vos, Brisa ❤️</h2>
+
+        <div class="letter">
+
+            <p>
+                Si llegaste hasta acá, quiero que sepas que
+                hice todo esto porque te amo.
+            </p>
+
+            <p>
+                Desde aquel 27 de diciembre de 2024,
+                pasando por el 1 de enero de 2025,
+                hubo algo de vos que nunca terminó de irse.
+            </p>
+
+            <p>
+                Y después de todo lo que pasó,
+                volver a encontrarnos hizo que muchas cosas
+                que parecían terminadas volvieran a sentirse
+                vivas.
+            </p>
+
+            <p>
+                Con vos siento que puedo ser distinto.
+                Más atento, más cariñoso y más dispuesto
+                a demostrar lo que siento.
+            </p>
+
+            <p>
+                Sé que estamos a distancia y que no siempre
+                es fácil. Hay momentos en los que solamente
+                podemos tenernos a través de una pantalla,
+                una llamada o un mensaje.
+            </p>
+
+            <p>
+                Pero aun así, cada conversación,
+                cada llamada y cada momento que compartimos
+                significa muchísimo para mí.
+            </p>
+
+            <p>
+                No quiero prometerte una vida perfecta,
+                porque sé que no existe.
+            </p>
+
+            <p>
+                Quiero prometerte que mientras estemos juntos,
+                voy a intentar cuidar lo nuestro,
+                hablar cuando algo duela,
+                escucharte y seguir creciendo con vos.
+            </p>
+
+            <p>
+                Quiero vivir cosas con vos.
+                Viajes, abrazos, risas, días malos,
+                días increíbles y todos esos momentos
+                que todavía ni imaginamos.
+            </p>
+
+            <p>
+                Y algún día, cuando podamos estar frente a frente
+                y mirar todo lo que construimos desde lejos,
+                quiero poder decirte:
+            </p>
+
+            <p style="text-align:center;">
+                <strong>
+                    “Mirá todo lo que logramos juntos.”
+                </strong>
+            </p>
+
+            <p>
+                Te amo, Brisa.
+            </p>
+
+            <p style="text-align:center;font-size:25px;">
+                ❤️
+            </p>
+
+        </div>
+
+        <button onclick="finalMessage()">
+            Una última cosa...
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     FINAL
+========================= -->
+
+<section class="screen" id="screen10">
+
+    <div class="card">
+
+        <div style="font-size:80px;">
+            🌹
+        </div>
+
+        <h1>
+            Vos y yo.
+        </h1>
+
+        <p style="font-size:22px;">
+            Hoy con kilómetros de por medio,
+            mañana quién sabe dónde,
+            pero siempre con cosas por vivir.
+        </p>
+
+        <p style="margin-top:25px;">
+            Gracias por existir.
+        </p>
+
+        <p style="margin-top:20px;color:#ff6078;">
+            Te amo, Brisa. ❤️
+        </p>
+
+    </div>
+
+</section>
+
+
+<script>
+
+/* =========================
+   CAMBIAR PANTALLAS
+========================= */
+
+function nextScreen(number) {
+
+    document.querySelectorAll(".screen").forEach(screen => {
+        screen.classList.remove("active");
+    });
+
+    document.getElementById("screen" + number)
+        .classList.add("active");
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+}
+
+
+/* =========================
+   SOBRE
+========================= */
+
+function openEnvelope() {
+
+    document.getElementById("envelopeText").innerHTML =
+        "Hay cosas que solamente quiero decirte a vos. ❤️";
+
+    setTimeout(() => {
+        nextScreen(3);
+    }, 1200);
+}
+
+
+/* =========================
+   HISTORIA
+========================= */
+
+function showStory(number) {
+
+    const text = document.getElementById("storyText");
+
+    if (number === 1) {
+
+        text.innerHTML = `
+            <span>
+            <strong>27 de diciembre de 2024</strong><br><br>
+            El día en que nuestras vidas empezaron a cruzarse
+            de una forma que ninguno de los dos sabía
+            hasta dónde iba a llegar.
+            </span>
+        `;
+
+    }
+
+    if (number === 2) {
+
+        text.innerHTML = `
+            <span>
+            <strong>1 de enero de 2025</strong><br><br>
+            Para mí fue el comienzo de algo mucho más grande.
+            El momento en el que empecé a sentir que realmente
+            quería tenerte en mi vida.
+            </span>
+        `;
+
+    }
+
+    if (number === 3) {
+
+        text.innerHTML = `
+            <span>
+            <strong>Nuestro reencuentro</strong><br><br>
+            Después de todo lo que pasó, volver a encontrarnos
+            hizo que muchas cosas que parecían terminadas
+            volvieran a sentirse vivas.
+            </span>
+        `;
+
+    }
+
+    if (number === 4) {
+
+        text.innerHTML = `
+            <span>
+            <strong>Hoy ❤️</strong><br><br>
+            Seguimos eligiéndonos incluso con kilómetros
+            de por medio. Y todavía tenemos muchísimo
+            por vivir.
+            </span>
+        `;
+
+    }
+}
+
+
+/* =========================
+   NOVIA
+========================= */
+
+function yesGirlfriend() {
+
+    document.getElementById("answerText").innerHTML =
+        "Entonces vení conmigo. ❤️";
+
+    createPetals();
+
+    setTimeout(() => {
+        nextScreen(7);
+    }, 1800);
+}
+
+
+function noGirlfriend() {
+
+    document.getElementById("answerText").innerHTML =
+        "Está bien. No quiero presionarte. Solamente quería que supieras lo que siento. ❤️";
+}
+
+
+/* =========================
+   ANILLO
+========================= */
+
+function ringClicked() {
+
+    document.getElementById("ringText").innerHTML =
+        "Un anillo no puede contar todo lo que siento... pero puede representar el futuro que sueño construir con vos. 💍";
+
+    setTimeout(() => {
+        nextScreen(8);
+    }, 2500);
+}
+
+
+/* =========================
+   FINAL
+========================= */
+
+function finalYes() {
+
+    createPetals();
+
+    setTimeout(() => {
+        nextScreen(9);
+    }, 1200);
+}
+
+
+function finalMessage() {
+
+    createPetals();
+
+    setTimeout(() => {
+        nextScreen(10);
+    }, 1000);
+}
+
+
+/* =========================
+   PÉTALOS
+========================= */
+
+function createPetals() {
+
+    for (let i = 0; i < 35; i++) {
+
+        const petal = document.createElement("div");
+
+        petal.className = "petal";
+
+        petal.innerHTML = Math.random() > .3
+            ? "🌹"
+            : "🌿";
+
+        petal.style.left =
+            Math.random() * 100 + "vw";
+
+        petal.style.animationDuration =
+            (3 + Math.random() * 5) + "s";
+
+        petal.style.animationDelay =
+            Math.random() * 2 + "s";
+
+        petal.style.fontSize =
+            (14 + Math.random() * 15) + "px";
+
+        document.body.appendChild(petal);
+
+        setTimeout(() => {
+            petal.remove();
+        }, 9000);
+    }
+}
+
+
+/* =========================
+   CORAZONES AL TOCAR
+========================= */
+
+document.addEventListener("click", function(event) {
+
+    if (
+        event.target.tagName === "BUTTON" ||
+        event.target.classList.contains("envelope") ||
+        event.target.classList.contains("ring")
+    ) {
+        return;
+    }
+
+    const heart = document.createElement("div");
+
+    heart.innerHTML = "❤️";
+
+    heart.style.position = "fixed";
+    heart.style.left = event.clientX + "px";
+    heart.style.top = event.clientY + "px";
+    heart.style.pointerEvents = "none";
+    heart.style.zIndex = "50";
+    heart.style.fontSize = "18px";
+    heart.style.transition = "1s";
+
+    document.body.appendChild(heart);
+
+    setTimeout(() => {
+
+        heart.style.transform =
+            "translateY(-70px) scale(1.5)";
+
+        heart.style.opacity = "0";
+
+    }, 20);
+
+    setTimeout(() => {
+        heart.remove();
+    }, 1100);
+
+});
+
+</script>
+
+</body>
+</html>
+```
